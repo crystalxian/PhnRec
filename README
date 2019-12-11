@@ -1,5 +1,6 @@
 The phoneme recognizer was developed at Brno University of Technology, Faculty of Information Technology and was successfully applied to tasks including language identification [4], indexing and search of audio records, and keyword spotting [5]. The main purpose of this distribution is research. Outputs from this phoneme recognizer can be used as a baseline for subsequent processing, as for example phonotactic language modeling.
 
+此音素识别器是由brno大学提出的。其可以成功应用在语言识别，索引以及语音搜索和关键词发现上。发布这个源代码的主要目的是科研。从此音素识别器得出的结果可以用作之后操作的基线，例如音位语音建模。
 
 Authors:
 Petr Schwarz , Pavel Matejka, Lukas Burget, Ondrej Glembek
@@ -11,8 +12,14 @@ Viterbi algorithm is used for phoneme string decoding
 English systems was trained on the TIMIT database
 Czech, Hungarian and Russian systems were trained on the SpeechDat-E databases
 
+描述
+基于时序内容分隔的特征提取
+神经网络的分类器
+维特比算法用来解码音素串
+英语的系统是在TIMIT数据集上训练的
+捷克语，匈牙利语和俄语是在SpeechDat-E数据集上训练的
 
-
+                                                                                                                                                                                                                                                                                                                                                          
 Compilation:
 The source code has been successfully compiled under Linux (GCC) and under Windows (MinGW32). The program can be compiled with or without BLAS (Basic Linear Algebra Subprograms) for acceleration. The ATLAS (Automatically Tuned Linear Algebra Software) is used in this case.
 Compilation under Linux with BLASsupport
@@ -23,6 +30,18 @@ Compilation under Windows with BLAS support
 make -f makefile.win
 Compilation under Windows without BLASsupport
 make -f makefile_noblas.win
+
+编译：
+源代码可以在linux（GCC）和windows（MinGW32）下成功编译。这个项目可以使用或者不使用BLAS加速计算。ATLAS会用于这个情况。【是否指的是如果没有BLAS加速就会使用ATLAS】
+有BLAS支持的linux系统下编译：
+make -f makefile.lin
+在没有BLAS支持下的Linux系统下编译：
+make -f makefile_noblas.lin
+有BLAS支持下的Window系统下编译：
+make -f makefile.win
+在没有BLAS支持下的Windows系统下编译：
+make -f makefile_noblas.win
+
 
 How to:
 set the recognition system
@@ -38,6 +57,10 @@ phnrec -c PHN_EN_TIMIT_LCRC_N500 -l list -m out.mlf
 1300000 2000000 ah
 2000000 3500000 s
 3500000 4500000 ih
+
+如何使用：
+建立
+
 
 phnrec -c PHN_EN_TIMIT_LCRC_N500 -i input.raw -o output.rec
 change the word (phoneme) insertion penalty:

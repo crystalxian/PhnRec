@@ -59,11 +59,23 @@ phnrec -c PHN_EN_TIMIT_LCRC_N500 -l list -m out.mlf
 3500000 4500000 ih
 
 如何使用：
-建立
+建立识别系统
+phnrec -c PHN_CZ_SPDAT_LCRC_N1500|PHN_HU_SPDAT_LCRC_N1500|PHN_RU_SPDAT_LCRC_N1500|PHN_EN_TIMIT_LCRC_N500
+设置输入格式：
+phnrec -c PHN_EN_TIMIT_LCRC_N500 -w alaw|lin16
+设置输入和输出文件。输出是HTK标签文件或者Master标签文件（MLF）输入是单一语音文件或者一系列语音文件。识别器同样可以存储类似Mel-banks或者后验这样的中间结果。存储中间结果可以显著地减少插入词的时间代价。
+phnrec -c PHN_EN_TIMIT_LCRC_N500 -l list -m out.mlf
+#!MLF!#
+"*/faem0.rec"
+000000 1300000 pau
+1300000 2000000 ah
+2000000 3500000 s
+3500000 4500000 ih
 
 
 phnrec -c PHN_EN_TIMIT_LCRC_N500 -i input.raw -o output.rec
 change the word (phoneme) insertion penalty:
+改变输入词的代价
 phnrec -c PHN_EN_TIMIT_LCRC_N500 -i input.raw -o output.rec -p -3.0
 Systems:
 PHN_CZ_SPDAT_LCRC_N1500 - 8kHz, 2 block STC, trained on Czech SpeechDat-E, 15 banks, 31 points, the DCT is applied on each temporal vector to reduce its size to 11 values, 1500 neurons in all nets
@@ -73,5 +85,6 @@ PHN_EN_TIMIT_LCRC_N500 - 16kHz, 2 block STC, trained on TIMIT, 15 banks, 31 poin
 
 Note: The Czech, Hungarian and Russian SpeechDat systems were used in NIST LRE2005.
 Results obtained by this system can slightly differ from published ones due to implementation.
+由于实现方法的不同得到的结果会与发布的结果相差甚远。
 Licence:
 Source codes and binaries can be redistributed and/or modified under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. Model files (directories PHN_CZ_SPDAT_LCRC_N1500, PHN_HU_SPDAT_LCRC_N1500, PHN_RU_SPDAT_LCRC_N1500, PHN_EN_TIMIT_LCRC_N500) can be used for research and educational purposes only. For any other use, please contact Jan Cernocky.
